@@ -4,11 +4,14 @@ import java.util.InputMismatchException;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
 
+import util.Keyboard;
+import util.Printer;
+
 public class Main {
 
 	public static void main(String[] args) {
 		
-		Scanner scanner = new Scanner(System.in);
+		Scanner scanner = Keyboard.getInstance();
 		while(input(scanner));
 		
 
@@ -16,14 +19,14 @@ public class Main {
 
 	private static boolean input(Scanner scanner) {
 		try {
-			printer("/*************/",true);
-			printer("Ýþlemi seçiniz ?",true);
-			printer("Toplama iþlemi için +'ya,",true);
-			printer("Çýkarma iþlemi için -'ye,",true);
-			printer("Çarpma iþlemi için *'a,",true);
-			printer("Bölme iþlemi için /'ya",true);
-			printer("Çýkýþ yapmak için e'ye",true);
-			printer("basýnýz :",false);
+			Printer.print("/*************/",true);
+			Printer.print("Ýþlemi seçiniz ?",true);
+			Printer.print("Toplama iþlemi için +'ya,",true);
+			Printer.print("Çýkarma iþlemi için -'ye,",true);
+			Printer.print("Çarpma iþlemi için *'a,",true);
+			Printer.print("Bölme iþlemi için /'ya",true);
+			Printer.print("Çýkýþ yapmak için e'ye",true);
+			Printer.print("basýnýz :",false);
 			switch(scanner.next()){
 				case "+":
 					toplama(scanner);
@@ -40,60 +43,50 @@ public class Main {
 				case "e":
 					return false;
 				default:
-					printer("Hatalý karakter giriþi yaptýnýz",true);
+					Printer.print("Hatalý karakter giriþi yaptýnýz",true);
 					return true;
 			}		
 		}catch(InputMismatchException e){
-			printer("Ýþleminiz Tamsayý girmediðinizden dolayý iptal edilmiþtir.",true);
+			Printer.print("Ýþleminiz Tamsayý girmediðinizden dolayý iptal edilmiþtir.",true);
 			return true;
 		}catch(NoSuchElementException e) {
-			printer("Ýþleminiz sayý girmediðinizden dolayý iptal edilmiþtir.",true);
+			Printer.print("Ýþleminiz sayý girmediðinizden dolayý iptal edilmiþtir.",true);
 			return true;
 		}catch(ArithmeticException e) {
-			printer("Ýþlem sonucunuz tanýmsýzdýr.",true);
+			Printer.print("Ýþlem sonucunuz tanýmsýzdýr.",true);
+			return true;
+		}catch(Exception e) {
+			Printer.print("Bilinmeyen bir hata",true);
 			return true;
 		}
 	}
 	
-	private static void bolme(Scanner scanner) throws InputMismatchException , NoSuchElementException , ArithmeticException {
-		printer("1.Sayýyý giriniz : ",false);
-		long numberOne = scanner.nextLong();
-		printer("2.Sayýyý giriniz : ",false);
-		long numberTwo = scanner.nextLong();
-		printer(numberOne+" / "+numberTwo+" = "+(numberOne/numberTwo),true);
+	
+	private static void bolme(Scanner scanner) throws InputMismatchException , NoSuchElementException , ArithmeticException , Exception {
+		long[] arr = getInput(scanner);
+		Printer.print(arr[0]+" / "+arr[1]+" = "+(arr[0]/arr[1]),true);
 	}
 
-	private static void carpma(Scanner scanner) throws InputMismatchException , NoSuchElementException {
-		printer("1.Sayýyý giriniz : ",false);
-		long numberOne = scanner.nextLong();
-		printer("2.Sayýyý giriniz : ",false);
-		long numberTwo = scanner.nextLong();
-		printer(numberOne+" * "+numberTwo+" = "+(numberOne*numberTwo),true);
+	private static void carpma(Scanner scanner) throws InputMismatchException , NoSuchElementException , Exception {
+		long[] arr = getInput(scanner);
+		Printer.print(arr[0]+" * "+arr[1]+" = "+(arr[0]*arr[1]),true);
 	}
 
-	private static void cikarma(Scanner scanner)  throws InputMismatchException , NoSuchElementException{
-		printer("1.Sayýyý giriniz : ",false);
-		long numberOne = scanner.nextLong();
-		printer("2.Sayýyý giriniz : ",false);
-		long numberTwo = scanner.nextLong();
-		printer(numberOne+" - "+numberTwo+" = "+(numberOne-numberTwo),true);
+	private static void cikarma(Scanner scanner)  throws InputMismatchException , NoSuchElementException , Exception{
+		long[] arr = getInput(scanner);
+		Printer.print(arr[0]+" - "+arr[1]+" = "+(arr[0]-arr[1]),true);
 	}
 
-	private static void toplama(Scanner scanner) throws InputMismatchException , NoSuchElementException {
-		printer("1.Sayýyý giriniz : ",false);
-		long numberOne = scanner.nextLong();
-		printer("2.Sayýyý giriniz : ",false);
-		long numberTwo = scanner.nextLong();
-		printer(numberOne+" + "+numberTwo+" = "+(numberOne+numberTwo),true);
+	private static void toplama(Scanner scanner) throws InputMismatchException , NoSuchElementException , Exception {
+		long[] arr = getInput(scanner);
+		Printer.print(arr[0]+" + "+arr[1]+" = "+(arr[0]+arr[1]),true);
 	}
-
-	//Android uygulama geliþtirmesi yaparken sürekli kullandýðým log yada kullanýcýya mesaj gösterme alýþkanlýðým olan metod
-		private static void printer(String print, boolean newLine) {
-			if(newLine) {
-				System.out.println(print);
-			}else {
-				System.out.print(print);
-			}
-		}
-
+	
+	private static long[] getInput(Scanner scanner) {
+		Printer.print("1.Sayýyý giriniz : ",false);
+		long numberOne = scanner.nextLong();
+		Printer.print("2.Sayýyý giriniz : ",false);
+		long numberTwo = scanner.nextLong();
+		return new long[] {numberOne,numberTwo};
+	}
 }

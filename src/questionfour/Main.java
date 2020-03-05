@@ -3,17 +3,20 @@ package questionfour;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+import util.Keyboard;
+import util.Printer;
+
 public class Main {
 
 	public static void main(String[] args) {
-		Scanner scanner = new Scanner(System.in);
+		Scanner scanner = Keyboard.getInstance();
 		while(floorSize(scanner));
 
 	}
 
 	private static boolean floorSize(Scanner scanner) {
-		printer("Kaç katlý yýldýz istersiniz ?",true);
-		printer("Çýkmak için 0'a basýn : ",false);
+		Printer.print("Kaç katlý yýldýz istersiniz ?",true);
+		Printer.print("Çýkmak için 0'a basýn : ",false);
 		
 		try {
 			int input = scanner.nextInt();
@@ -21,14 +24,14 @@ public class Main {
 			if(input == 0) {
 				return false;
 			}else if(input < 0.0) {
-				printer("Negatif tamsayýlar geçersizdir",true);
+				Printer.print("Negatif tamsayýlar geçersizdir",true);
 				return true;
 			}else {
 				verticalStar(input);	
 			}
 			
 		}catch(InputMismatchException e) {
-			printer("Tamsayý giriþi yapmadýðýnýz için iþlem iptal edilmiþtir.",true);
+			Printer.print("Tamsayý giriþi yapmadýðýnýz için iþlem iptal edilmiþtir.",true);
 			return false;
 		}
 		return true;
@@ -36,28 +39,18 @@ public class Main {
 
 	private static void verticalStar(int floor) {
 		if(floor == 1) {
-			printer("*",true);
+			Printer.print("*",true);
 		}else {
 			for(int i = 1 ; i<floor; i++) {
 				horizontalStar(i);
-				printer("",true);
+				Printer.print("",true);
 			}
 		}
 	}
 
 	private static void horizontalStar(int i) {
 		for(int j = 0; j<i ;j++) {
-			printer("*",false);
+			Printer.print("*",false);
 		}
 	}
-	
-	//Android uygulama geliþtirmesi yaparken sürekli kullandýðým log yada kullanýcýya mesaj gösterme alýþkanlýðým olan metod
-	private static void printer(String print, boolean newLine) {
-		if(newLine) {
-			System.out.println(print);
-		}else {
-			System.out.print(print);
-		}
-	}
-
 }

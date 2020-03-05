@@ -1,12 +1,14 @@
 package questionthree;
 
 import java.util.Random;
+import util.Printer;
+import util.Rastgele;
 
 public class Main {
 
 	public static void main(String[] args) {
 		int[] randomArr = fillArr();
-		System.out.println("Rastgele oluþturulan Dizinin ortamalasý = "+findAvgArr(randomArr));
+		Printer.print("Rastgele oluþturulan Dizinin ortamalasý = "+findAvgArr(randomArr),true);
 
 	}
 
@@ -20,7 +22,7 @@ public class Main {
 
 	private static int[] fillArr() {
 		int[] arr = new int[100];
-		Random random = new Random();
+		Random random = Rastgele.getInstance();
 		for(int i = 0 ; i<arr.length;i++) {
 			arr[i] = random.nextInt();
 			//Burada dilersek programýn verdiði random sayý aralýðýný azaltarak ortalamanýn daha düþük bir rakam gelmesini saðlayabiliriz
@@ -28,5 +30,4 @@ public class Main {
 		}
 		return arr;
 	}
-
 }
