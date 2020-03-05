@@ -41,7 +41,7 @@ public class Main {
 		if(floor == 1) {
 			Printer.print("*",true);
 		}else {
-			for(int i = 1 ; i<floor; i++) {
+			for(int i = 1 ; i<=floor; i++) {
 				horizontalStar(i);
 				Printer.print("",true);
 			}

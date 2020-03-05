@@ -3,7 +3,7 @@ package util;
 import questionsix.IDocument;
 
 public class Printer {
-	//Android uygulama geliþtirmesi yaparken sürekli kullandýðým log yada kullanýcýya mesaj gösterme alýþkanlýðým olan metod
+	//Android uygulama geliþtirmesi yaparken sürekli kullandýðým log yada kullanýcýya mesaj gösterme alýþkanlýðýma benzer olan metod
 	public static void print(String print, boolean newLine) {
 		if(newLine) {
 			System.out.println(print);
