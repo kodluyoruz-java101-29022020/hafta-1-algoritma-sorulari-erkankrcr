@@ -12,12 +12,12 @@ public class Main {
 	public static void main(String[] args) {
 		
 		Scanner scanner = Keyboard.getInstance();
-		while(input(scanner));
+		while(menu(scanner));
 		
 
 	}
 
-	private static boolean input(Scanner scanner) {
+	private static boolean menu(Scanner scanner) {
 		try {
 			Printer.print("/*************/",true);
 			Printer.print("Ýþlemi seçiniz ?",true);

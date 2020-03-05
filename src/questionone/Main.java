@@ -15,6 +15,7 @@ public class Main {
 		while(auth(scanner,password)); 
 	}
 
+	//Burada þifreyi dýþarýdan almamýn sebebi sanki bu parola bir db den yada uzak sunucudan gelmesi durumunu göstermek
 	private static boolean auth(Scanner scanner, String password) {
 		Printer.print("Þifreyi Giriniz :",false);
 		try {
