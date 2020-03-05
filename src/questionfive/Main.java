@@ -24,7 +24,7 @@ public class Main {
 		Random random = new Random();
 		for(int i = 0; i<arr.length;i++) {
 			arr[i] = random.nextInt();
-			//Burada dilersek programın verdiği random sayı aralığını azaltarak ortalamanın daha düşük bir rakam gelmesini sağlayabiliriz
+			//Burada dilersek programın verdiği random sayı aralığını azaltarak sayı aralığının daha düşük bir rakam gelmesini sağlayabiliriz
 			//arr[i] = random.nextInt(1000); gibi
 		}
 		return arr;
